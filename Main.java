@@ -15,7 +15,6 @@ public class Main {
     }
 
     public static boolean isPalindrome(char[] ch,int start, int end){
-
         while(start<end){
             if(ch[start] == ch[end]){
                 start++;
@@ -28,7 +27,6 @@ public class Main {
     }
 
     public static String ifDeleteOneCharToPalindrome(String str){
-
         char[] ch = str.toCharArray();
         int start = 0;
         int end = str.length()-1;
