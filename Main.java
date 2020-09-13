@@ -1,47 +1,35 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
         while (sc.hasNext()){
-            String s = sc.nextLine();
-            String s0 = ifDeleteOneCharToPalindrome(s);
-            if (s0.length() == 0){
-                System.out.println("false");
-            } else{
-                System.out.println(s0);
-            }
+        for (int i = 0; i < T; i++){
+             int n = sc.nextInt();
+             int m = sc.nextInt();
+             int k = sc.nextInt();
+             int[][] arr = new int[m][3];
+             for (int j = 0; j < m; j++){
+                 arr[j][0] = sc.nextInt();
+                 arr[j][1] = sc.nextInt();
+                 arr[j][2] = sc.nextInt();
+             }
+             if (bfs(arr, n, m, k)) System.out.println("Yes");
+             else System.out.println("No");
+        }
         }
     }
 
-    public static boolean isPalindrome(char[] ch,int start, int end){
-        while(start<end){
-            if(ch[start] == ch[end]){
-                start++;
-                end--;
-            }else{
-                return false;
+    public static boolean bfs(int[][] arr, int n, int m, int k){
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < m; i++){
+            if (arr[i][2] <= k){
+                set.add(arr[i][0]);
+                set.add(arr[i][1]);
             }
         }
-        return true;
-    }
 
-    public static String ifDeleteOneCharToPalindrome(String str){
-        char[] ch = str.toCharArray();
-        int start = 0;
-        int end = str.length()-1;
-        while(start<end){
-            if(ch[start]==ch[end]){
-                start++;
-                end--;
-            }else{
-                if (isPalindrome(ch,start+1,end)){
-                    return str.substring(0,start) + str.substring(start+1);
-                }else if (isPalindrome(ch,start,end-1)){
-                    return str.substring(0,end) + str.substring(end+1);
-                } else return "";
-            }
-        }
-        return str;
+        return set.size() == n;
     }
 }
